@@ -1,25 +1,23 @@
-package kz.iitu.javaee;
+/*package kz.iitu.javaee;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-@WebServlet(value = "/register")
-public class RegisterServlet extends HttpServlet {
-
+//THIS SERVLET IS NOT NECESSARY
+@WebServlet(value = "/")
+public class MainServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String username = req.getParameter("username");
-        req.getRequestDispatcher("/register.jsp").forward(req, resp);
-    }
-    //WE USED THIS METHOD
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        String username = req.getParameter("Username");
+        req.getRequestDispatcher("").forward(req, resp);
     }
 
-}
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("Username");
+        resp.sendRedirect("http://localhost:8080/JavaEEAssignment2_war/");
+    }
+}*/
