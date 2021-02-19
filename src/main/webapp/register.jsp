@@ -41,7 +41,7 @@
         <span class="input-group-text" id="basic-addon3">@</span>
         <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon3">
     </div>
-    <a href="/index.jsp"><input class="btn btn-primary" type="submit" value="Submit"></a>
+    <a href="/index.jsp"><input class="btn btn-primary" type="submit" value="register"></a>
 </form>
 </body>
 </html>
