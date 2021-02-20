@@ -16,8 +16,10 @@ public class SessionValidationFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpSession session = req.getSession(false);
-        if(session!=null)
-            session.invalidate();
+       if(session!=null) {
+           System.out.println("Session validation success!!!");
+           session.setMaxInactiveInterval(5 * 60);
+        }
         else
             System.out.println("Session validation failed!!!");
 

@@ -3,13 +3,11 @@ package kz.iitu.javaee;
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-import java.util.logging.Logger;
+import java.util.Date;
 
-public class LoggingFilter implements Filter {
+public class SessionProlongingFilter implements Filter {
     private ServletContext context;
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -19,18 +17,15 @@ public class LoggingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
-        Enumeration<String> params = req.getParameterNames();
-        while(params.hasMoreElements()){
-            String name = params.nextElement();
-            String username = servletRequest.getParameter("username");
-            this.context.log(req.getRemoteAddr() + "::Request Params::{"+name+"="+username+"}");
-        }
-
         Cookie[] cookies = req.getCookies();
         if(cookies != null){
             for(Cookie cookie : cookies){
-                this.context.log(req.getRemoteAddr() + "::Cookie::{"+cookie.getName()+","+cookie.getValue()+"}");
+                cookie.setMaxAge(60 * 30);
             }
+        }
+        HttpSession session = req.getSession(false);
+        if(session!=null) {
+            session.setMaxInactiveInterval(30 * 60);
         }
         // pass the request along the filter chain
         filterChain.doFilter(servletRequest, servletResponse);

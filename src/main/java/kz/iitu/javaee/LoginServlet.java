@@ -22,10 +22,7 @@ public class LoginServlet extends HttpServlet {
     //WE USED THIS METHOD
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(false);
-        String username = req.getParameter("username");
-        if(session!=null)
-            session.setAttribute("name", username);
+
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }
